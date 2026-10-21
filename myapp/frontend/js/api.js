@@ -1,20 +1,16 @@
 // api.js
 //
 // This file is the ONLY place that talks to the backend.
-// rooms.js / booking.js / my-bookings.js all call the functions below -
-// they never use fetch() directly. This keeps things organized and
-// makes Stage 3 (integration) simple: you only edit this one file.
+// rooms.js / booking.js / my-bookings.js all call the functions below.
 //
-// STAGE 1 (Frontend only, no backend yet):
-//   Leave this file as-is. The functions below return hardcoded
-//   "mock" data so you can build and style your pages first.
+// STAGE 1:
+// Uses mock data.
 //
-// STAGE 3 (Integration):
-//   Replace the body of each function with a real fetch() call to
-//   your Express server, started with "npm start" at http://localhost:3000.
-//   Examples are shown in the comments below each function.
+// STAGE 3:
+// These functions will later be replaced with fetch() calls.
 
 // ---------- Mock data used only in Stage 1 ----------
+
 const MOCK_ROOMS = [
   {
     id: "r1",
@@ -37,19 +33,17 @@ let MOCK_BOOKINGS = [];
 // ---------- Rooms ----------
 
 async function getRooms() {
-  // STAGE 1 (current):
   return MOCK_ROOMS;
 
-  // STAGE 3: replace the line above with:
+  // STAGE 3:
   // const response = await fetch("/api/rooms");
   // return await response.json();
 }
 
 async function getRoomById(id) {
-  // STAGE 1 (current):
   return MOCK_ROOMS.find((room) => room.id === id);
 
-  // STAGE 3: replace the two lines above with:
+  // STAGE 3:
   // const response = await fetch(`/api/rooms/${id}`);
   // return await response.json();
 }
@@ -57,24 +51,42 @@ async function getRoomById(id) {
 // ---------- Bookings ----------
 
 async function getBookings() {
-  // TODO (Stage 1): return MOCK_BOOKINGS
-  // TODO (Stage 3): fetch("/api/bookings") and return the parsed JSON
+  return MOCK_BOOKINGS;
+
+  // STAGE 3:
+  // const response = await fetch("/api/bookings");
+  // return await response.json();
 }
 
 async function createBooking(bookingData) {
-  // bookingData looks like:
-  // { roomId, clubName, date, startTime, endTime, purpose }
+  const newBooking = {
+    id: `b${Date.now()}`,
+    ...bookingData,
+  };
 
-  // TODO (Stage 1): push a new object (with a generated id) into
-  //   MOCK_BOOKINGS and return it.
-  // TODO (Stage 3): fetch("/api/bookings", {
+  MOCK_BOOKINGS.push(newBooking);
+
+  return newBooking;
+
+  // STAGE 3:
+  // const response = await fetch("/api/bookings", {
   //   method: "POST",
-  //   headers: { "Content-Type": "application/json" },
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
   //   body: JSON.stringify(bookingData),
-  // }) and return the parsed JSON.
+  // });
+  //
+  // return await response.json();
 }
 
 async function deleteBooking(id) {
-  // TODO (Stage 1): remove the matching booking from MOCK_BOOKINGS.
-  // TODO (Stage 3): fetch(`/api/bookings/${id}`, { method: "DELETE" }).
+  MOCK_BOOKINGS = MOCK_BOOKINGS.filter(
+    (booking) => booking.id !== id
+  );
+
+  // STAGE 3:
+  // await fetch(`/api/bookings/${id}`, {
+  //   method: "DELETE",
+  // });
 }
