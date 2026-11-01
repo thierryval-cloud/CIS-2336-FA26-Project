@@ -23,37 +23,52 @@ const { readData, writeData } = require("../utils/jsonStore");
 // GET /api/bookings
 router.get("/", (req, res) => {
   // TODO (Stage 2):
-  // 1. Read bookings.json using readData()
-  // 2. Send it back with res.json(...)
-
-  res.status(501).json({ error: "Not implemented yet" });
+const bookings = readData("bookings.json");
+res.json(bookings);
 });
 
 // POST /api/bookings
 router.post("/", (req, res) => {
-  // TODO (Stage 2):
-  // 1. Read the new booking fields from req.body
-  //    (roomId, clubName, date, startTime, endTime, purpose)
-  // 2. Validate that required fields are present
-  //    (res.status(400).json({ error: "..." }) if something is missing)
-  // 3. Read the current bookings from bookings.json
-  // 4. Create a new booking object with a unique id
-  // 5. Add it to the array and writeData("bookings.json", updatedArray)
-  // 6. res.status(201).json(newBooking)
+    const roomId = req.body.roomId;
+  const clubName = req.body.clubName;
+  const date = req.body.date;
+  const startTime = req.body.startTime;
+  const endTime = req.body.endTime;
+  const purpose = req.body.purpose;
 
-  res.status(501).json({ error: "Not implemented yet" });
+  if (!roomId || !clubName || !date || !startTime || !endTime) {
+    return res.status(400).json({ error: "Missing required fields" });
+  }
+
+  const bookings = readData("bookings.json");
+
+  const newBooking = {
+    id: Date.now().toString(),
+    roomId: roomId,
+    clubName: clubName,
+    date: date,
+    startTime: startTime,
+    endTime: endTime,
+    purpose: purpose
+  };
+
+  bookings.push(newBooking);
+
+  writeData("bookings.json", bookings);
+
+  res.status(201).json(newBooking);
 });
 
 // DELETE /api/bookings/:id
 router.delete("/:id", (req, res) => {
-  // TODO (Stage 2):
-  // 1. Read the current bookings from bookings.json
-  // 2. Filter out the booking whose id matches req.params.id
-  // 3. If nothing was removed, res.status(404).json({ error: "Booking not found" })
-  // 4. Otherwise writeData("bookings.json", filteredArray)
-  // 5. res.status(200).json({ message: "Booking canceled" })
-
-  res.status(501).json({ error: "Not implemented yet" });
+  const bookings = readData("bookings.json");
+  const filteredBookings = bookings.filter(
+    (booking) => booking.id !== req.params.id
+  );
+  if (filteredBookings.length === bookings.length) {
+    return res.status(404).json({ error: "Booking not found" });
+  }
+  writeData("bookings.json", filteredBookings);
+  res.status(200).json({ message: "Booking cancelled" });
 });
-
 module.exports = router;

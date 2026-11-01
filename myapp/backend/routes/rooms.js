@@ -25,7 +25,15 @@ router.get("/:id", (req, res) => {
   // 3. If found, res.json(room)
   // 4. If not found, res.status(404).json({ error: "Room not found" })
 
-  res.status(501).json({ error: "Not implemented yet" });
+  const rooms = readData("rooms.json");
+
+const room = rooms.find((room) => room.id === req.params.id);
+
+if (room) {
+  res.json(room);
+} else {
+  res.status(404).json({ error: "Room not found" });
+}
 });
 
 module.exports = router;
