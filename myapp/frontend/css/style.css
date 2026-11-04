@@ -1,173 +1,222 @@
-/* ---------- Basic reset & page setup ---------- */
+/* ---------- Page setup ---------- */
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f5f5f5;
-  color: #222;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  background-color: #f2f2f2;
+  color: #252525;
 }
 
 main {
-  max-width: 1000px;
+  max-width: 1050px;
   margin: 0 auto;
-  padding: 24px 16px;
+  padding: 32px 20px;
 }
 
-h1, h2 {
-  color: #c8102e; /* UH red */
+h1 {
+  color: #c8102e;
+  margin-bottom: 12px;
 }
+
+h2 {
+  color: #333333;
+  margin-top: 28px;
+}
+
 
 /* ---------- Navigation bar ---------- */
+
 nav.navbar {
-  background-color: #c8102e; /* UH red */
-  padding: 12px 24px;
+  background-color: #1e1517;
+  padding: 16px 28px;
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 22px;
+  flex-wrap: wrap;
 }
 
 nav.navbar .brand {
-  color: #fff;
+  color: rgb(239, 13, 13);
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   margin-right: auto;
 }
 
 nav.navbar a {
-  color: #fff;
+  color: rgb(246, 4, 4);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: bold;
+  padding: 4px 0;
 }
 
-nav.navbar a:hover,
-nav.navbar a.active {
+nav.navbar a:hover {
   text-decoration: underline;
 }
 
-/* ---------- Room cards (index.html) ---------- */
+nav.navbar a.active {
+  border-bottom: 2px solid white;
+}
+
+
+/* ---------- Room cards ---------- */
+
 .room-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
-  margin-top: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 18px;
 }
 
 .room-card {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border: 1px solid #cccccc;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
 .room-card h3 {
   margin-top: 0;
-  color: #c8102e;
+  margin-bottom: 14px;
+  color: #fb0606;
 }
 
-.room-card ul {
-  padding-left: 18px;
+.room-card p {
   margin: 8px 0;
 }
 
+.room-card ul {
+  padding-left: 22px;
+  margin-top: 8px;
+  margin-bottom: 14px;
+}
+
+
+/* ---------- Food badges ---------- */
+
 .badge {
   display: inline-block;
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 0.85rem;
   font-weight: bold;
 }
 
 .badge.food-yes {
-  background-color: #d4edda;
-  color: #155724;
+  background-color: #d9f2df;
+  color: #176329;
 }
 
 .badge.food-no {
-  background-color: #f8d7da;
-  color: #721c24;
+  background-color: #7d0877;
+  color: #f3f304;
 }
 
-/* ---------- Forms (booking.html) ---------- */
+
+/* ---------- Booking form ---------- */
+
 form {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 20px;
-  max-width: 480px;
-  margin-top: 16px;
+  background-color: white;
+  border: 1px solid #cccccc;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 520px;
+  margin-top: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.10);
 }
 
 form label {
   display: block;
-  margin-top: 12px;
-  margin-bottom: 4px;
+  margin-top: 14px;
+  margin-bottom: 6px;
   font-weight: bold;
+  color: #333333;
 }
 
 form input,
 form select,
 form textarea {
   width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 10px;
+  border: 1px solid #0f0e0e;
+  border-radius: 6px;
   font-size: 1rem;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+form textarea {
+  resize: vertical;
 }
 
 form button {
-  margin-top: 16px;
+  margin-top: 20px;
   background-color: #c8102e;
-  color: #fff;
+  color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
+  padding: 11px 22px;
+  border-radius: 6px;
   font-size: 1rem;
+  font-weight: bold;
   cursor: pointer;
 }
 
 form button:hover {
-  background-color: #a10d24;
+  background-color: #9e0c24;
 }
 
-/* ---------- Bookings list (my-bookings.html) ---------- */
+
+/* ---------- My Bookings ---------- */
+
 .booking-item {
-  background: #fff;
-  border: 1px solid #ddd;
+  background-color: white;
+  border-left: 5px solid #c8102e;
   border-radius: 8px;
-  padding: 12px 16px;
+  padding: 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.booking-item h3 {
+  color: #c8102e;
+  margin-top: 0;
   margin-bottom: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+}
+
+.booking-item p {
+  margin: 6px 0;
 }
 
 .booking-item button {
-  background-color: #721c24;
-  color: #fff;
+  background-color: #333333;
+  color: rgb(252, 245, 245);
   border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  margin-top: 12px;
   cursor: pointer;
 }
 
 .booking-item button:hover {
-  background-color: #4f151a;
+  background-color: #630818;
 }
 
-/* ---------- Status / helper messages ---------- */
+
+/* ---------- Status messages ---------- */
+
 .status-message {
-  margin-top: 12px;
+  margin-top: 14px;
   font-weight: bold;
 }
 
-.status-message.error {
-  color: #a10d24;
+.status-message.success {
+  color: #185429;
 }
 
-.status-message.success {
-  color: #1a7a31;
+.status-message.error {
+  color: #41171d;
 }
